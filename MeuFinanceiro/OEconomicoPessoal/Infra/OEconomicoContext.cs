@@ -12,8 +12,8 @@ namespace OEconomicoPessoal.Dao
         //{}
 
         public OEconomicoContext()
-            : base(@"Data Source = SQL7003.site4now.net; Initial Catalog = DB_A2FAC6_gisiona; User Id = DB_A2FAC6_gisiona_admin; Password =13579aabbc")
-            //: base(@"Data Source=WIN-68GCQG5NS0\SQLEXPRESS;Initial Catalog=OEconomico;Integrated Security=True")
+            
+            : base(@"Data Source=WIN-68GCQG5NS0\SQLEXPRESS;Initial Catalog=OEconomico;Integrated Security=True")
         {}
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -1,0 +1,52 @@
+﻿@model OEconomicoPessoal.Entidades.TipoReceita
+
+@{
+    ViewBag.Title = "Tipo Receita";
+}
+
+
+
+<div class="panel panel-danger">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/receitas/tiporeceitas">Receitas</a>
+        </li>
+        <li class="breadcrumb-item active">Adicionar Tipo Receita</li>
+    </ol>
+    @*<div class="panel-danger">
+        <h3 class="text-lg-left">Tipo Receita</h3>
+        <div class="alert alert-danger">
+                <h4 class="text-lg-left">Adicionar Nova Despesa</h4>
+            </div>
+    </div>*@
+
+    @using (Html.BeginForm("tiporeceitas", "receitas", FormMethod.Post, new { enctype = "multipart/form-data", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <br />
+        <div class="container row">
+            <div class="form-group col-md-4">
+                <label class="col-form-label" for="`descricao">Descrição</label>
+                <input type="text" class="form-control" id="descricao" name="descricao" required/>
+            </div>
+            @*<div class="form-group col-md-4">
+                    <label class="col-form-label" for="conta">Conta</label>
+                    <select class="form-control" id="conta" name="conta">
+                        <option value="1">Conta Pessoal</option>
+                    </select>
+                </div>*@
+
+        </div>
+
+        <div class="container row">
+            <div class="form-group col-md-4">
+                <input type="submit" value="Salvar Tipo Receita" formmethod="post" class="btn btn-lg btn-success" />
+            </div>
+        </div>
+    }
+</div>
+
+@Html.Partial("_MensagemErroPartial")
+@Html.Partial("_MensagemSucessoPartial")
+
+

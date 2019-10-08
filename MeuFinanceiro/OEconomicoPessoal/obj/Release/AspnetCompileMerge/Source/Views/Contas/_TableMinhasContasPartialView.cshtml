@@ -1,0 +1,50 @@
+﻿@model  OEconomicoPessoal.Models.ViewModel.ContasViewModel
+
+@if (Model != null && Model.GetContas.Count > 0)
+{
+    <!-- Example DataTables Card-->
+    <div class="card mb-3">
+        <div class="card-header bg-info">
+            <i class="fa fa-table"></i> Contas
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Descrição</th>
+                            <th>Data</th>
+                            <th>Saldo Atual</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model.GetContas)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td id="id">@item.Id</td>
+                                    <td id="tipoarquivo">@item.Descricao</td>
+                                    <td id="titulo">@item.DataCadastro</td>
+                                    <td id="descricao">R$ @item.Valor</td>
+                                    <td>
+                                        <a href="@Url.Action("editarconta","contas", new { id = @item.Id })" id="editarconta" name="@item.Id">
+                                            Editar
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">
+            Última atualização em @DateTime.Now.Hour:@DateTime.Now.Minute
+        </div>
+    </div>
+
+}
+

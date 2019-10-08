@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="oeconomista" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\TFS\\GILCOSTA\\MyFirstProject\\MeuFinanceiro\\OEconomicoPessoal\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\TFS\\GILCOSTA\\MyFirstProject\\MeuFinanceiro\\OEconomicoPessoal\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-OEconomicoPessoal-20180315114327.mdf;Initial Catalog=aspnet-OEconomicoPessoal-20180315114327;Integrated Security=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\TFS\\GILCOSTA\\MyFirstProject\\MeuFinanceiro\\OEconomicoPessoal\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="OEconomicoPessoal.Dao.OEconomicoContext-Web.config Connection String" description="" value="OEconomicoPessoal.Dao.OEconomicoContext_ConnectionString" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\TFS\\GILCOSTA\\MyFirstProject\\MeuFinanceiro\\OEconomicoPessoal\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='OEconomicoPessoal.Dao.OEconomicoContext']/@connectionString" />
+  </parameter>
+</parameters>

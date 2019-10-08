@@ -1,0 +1,58 @@
+﻿@model  OEconomicoPessoal.Models.ViewModel.DespesasViewModel
+
+
+
+        @if (Model != null && Model.GetDespesas.Count > 0)
+        {
+    <!-- Example DataTables Card-->
+            <div class="card mb-3">
+                <div class="card-header bg-info">
+                    <i class="fa fa-table"></i> Despesas do mês
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Data</th>
+                                    <th>Valor</th>
+                                    @*<th>Usuário</th>*@
+                                    <th>Descrição</th>
+                                    <th>Pagamento</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            @if (Model != null)
+                            {
+                                foreach (var item in Model.GetDespesas)
+                                {
+                                    <tbody>
+                                        <tr>
+                                            <td id="id">@item.Id</td>
+                                            <td id="titulo">@item.DataCadastro</td>
+                                            <td id="descricao">R$ @item.Valor</td>
+                                            @*<td id="datacadastro">@item.Accounts.Nome</td>*@
+                                            <td id="tipoarquivo">@item.Descricao</td>
+                                            <td id="nomearquivo">@item.TipoPagamentos.Descricao</td>
+                                            <td>
+                                                <a href="@Url.Action("editardespesa","despesas", new { id = @item.Id })" id="editardespesa" name="@item.Id">
+                                                    Editar
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                }
+                            }
+                        </table>
+
+                    </div>
+                </div>
+                <div class="card-footer small text-muted">
+                    Última atualização em @DateTime.Now.Hour:@DateTime.Now.Minute
+
+                </div>
+            </div>
+
+        }

@@ -1,0 +1,38 @@
+﻿
+<body class="bg-dark">
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header">Criar nova senha.</div>
+
+            <div class="card-body">
+                <form method="post">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <p>Digite sua nova senha.</p>
+                                <div class="form-group">
+                                    <input type="password" placeholder="Digite sua nova senha" class="form-control col-md-12" id="senha" name="senha" required />
+                                    
+                                    <input type="password" placeholder="Confirme sua nova senha" class="form-control col-md-12" id="confirmesenha" name="confirmesenha" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">Criar nova senha</button>
+                </form>
+                <div class="text-right">
+                    <a class="d-block small mt-3" href="/account/login">Voltar para tela de login</a>
+                </div>
+
+                @Html.Partial("_MensagemErroPartial")
+                @Html.Partial("_MensagemSucessoPartial")
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+

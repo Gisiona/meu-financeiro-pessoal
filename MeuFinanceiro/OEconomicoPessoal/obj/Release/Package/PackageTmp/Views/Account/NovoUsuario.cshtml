@@ -1,0 +1,146 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutExternalSemLoginPartial.cshtml";
+}
+
+<body class="bg-dark">
+   @* @Html.AntiForgeryToken()*@
+    <div class="container">        
+        <div class="card card-register mx-auto mt-5">            
+            <div class="card-header">Criar um novo usuário</div>
+
+            <div class="panel-info">
+                @Html.Partial("_MensagemErroPartial")
+                @Html.Partial("_MensagemSucessoPartial")
+            </div>
+
+            <div class="card-body">
+                <form method="post">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-8">
+                                <label for="nome">Nome</label>
+                                <input class="form-control" id="nome" name="nome" type="text" aria-describedby="nameHelp" placeholder="Nome">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="datanascimento">Data Nascimento</label>
+                                <input type="date" class="form-control" id="datanascimento" name="datanascimento" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="telefone">Tel. Celular</label>
+                                <input class="form-control" id="telefone" name="telefone" type="tel" aria-describedby="nameHelp" placeholder="Telefone celular">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="cpf">CPF/CNPJ</label>
+                                <input maxlength="18" onkeypress='mascaraMutuario(this,cpfCnpj)' onblur='clearTimeout()' required data-error=" Digite seu CPF"
+                                      class="form-control" id="cpf" name="cpf" type="text" aria-describedby="nameHelp" placeholder="CPF ou CNPJ">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input class="form-control" id="email" name="email" type="email" aria-describedby="emailHelp" placeholder="E-mail">
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="senha">Senha</label>
+                                <input class="form-control" id="senha" name="senha" type="password" placeholder="Senha" required maxlength="20">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="confirmarsenha">Confirme a senha</label>
+                                <input class="form-control" id="confirmarsenha" name="confirmarsenha" type="password" placeholder="Confirme a senha" required maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">Salvar Usuário</button>
+
+                </form>
+                <div class="text-right">
+                    <a class="d-block small mt-3" href="/account/login">Voltar para tela de login</a>
+                    <a class="d-block small" href="/account/recuperarsenha">Recuperar senha?</a>
+                </div>               
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+<script>
+    function mascaraMutuario(o, f) {
+        v_obj = o
+        v_fun = f
+        setTimeout('execmascara()', 1)
+    }
+
+    function execmascara() {
+        v_obj.value = v_fun(v_obj.value)
+    }
+
+    function cpfCnpj(v) {
+
+        //Remove tudo o que não é dígito
+        v = v.replace(/\D/g, "")
+
+        if (v.length <= 14) { //CPF
+
+            //Coloca um ponto entre o terceiro e o quarto dígitos
+            v = v.replace(/(\d{3})(\d)/, "$1.$2")
+
+            //Coloca um ponto entre o terceiro e o quarto dígitos
+            //de novo (para o segundo bloco de números)
+            v = v.replace(/(\d{3})(\d)/, "$1.$2")
+
+            //Coloca um hífen entre o terceiro e o quarto dígitos
+            v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+
+        } else { //CNPJ
+
+            //Coloca ponto entre o segundo e o terceiro dígitos
+            v = v.replace(/^(\d{2})(\d)/, "$1.$2")
+
+            //Coloca ponto entre o quinto e o sexto dígitos
+            v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3")
+
+            //Coloca uma barra entre o oitavo e o nono dígitos
+            v = v.replace(/\.(\d{3})(\d)/, ".$1/$2")
+
+            //Coloca um hífen depois do bloco de quatro dígitos
+            v = v.replace(/(\d{4})(\d)/, "$1-$2")
+
+        }
+
+        return v
+    }
+
+
+    /* Máscaras ER */
+    function mascara(o, f) {
+        v_obj = o
+        v_fun = f
+        setTimeout("execmascara()", 1)
+    }
+    function execmascara() {
+        v_obj.value = v_fun(v_obj.value)
+    }
+    function mtel(v) {
+        v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
+        v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+        v = v.replace(/(\d)(\d{4})$/, "$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+        return v;
+    }
+    function id(el) {
+        return document.getElementById(el);
+    }
+    window.onload = function () {
+        id('telefone').onkeyup = function () {
+            mascara(this, mtel);
+        }
+    }
+    
+</script>

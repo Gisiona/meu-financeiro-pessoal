@@ -1,0 +1,15 @@
+﻿@if (!string.IsNullOrEmpty(@ViewBag.sucesso))
+{
+    @*<div class="alert alert-success">
+        <h3 class="text-lg-left">@ViewBag.sucesso</h3>
+    </div>*@
+    <br />
+        <div class="alert  alert-success alert-dismissible fade show" role="alert">
+            <span class="badge badge-pill badge-success"></span> @ViewBag.sucesso
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+    
+}
+

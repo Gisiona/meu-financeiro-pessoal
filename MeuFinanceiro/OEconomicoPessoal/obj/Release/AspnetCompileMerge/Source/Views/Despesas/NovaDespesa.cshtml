@@ -1,0 +1,196 @@
+﻿@model OEconomicoPessoal.Entidades.Despesa
+
+@{
+    ViewBag.Title = "Nova Despesas";
+}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/despesas/novadespesa">Despesas</a>
+    </li>
+    <li class="breadcrumb-item active">Nova Despesa</li>
+</ol>
+
+<div class="card mx-auto mt-auto">
+    <div class="card-header">Adicionar nova despesa </div>
+
+    <div class="panel panel-danger">
+
+        @*<div class="panel-danger">
+                <h3 class="text-lg-left">Nova Despesa</h3>
+                <div class="alert alert-danger">
+                        <h4 class="text-lg-left">Adicionar Nova Despesa</h4>
+                </div>
+            </div>*@
+
+        @using (Html.BeginForm("novadespesa", "despesas", FormMethod.Post, new { enctype = "multipart/form-data", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <br />
+            <div class="container row">
+                <div class="form-group col-md-4">
+                    <label class="col-form-label" for="`descricao">Descrição</label>
+                    <input type="text" class="form-control" id="descricao" name="descricao" required />
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label class="col-form-label" for="valor">Valor</label>
+                    <input type="text" class="form-control" id="valor" name="valor" required />
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="col-form-label" for="tipodespesa">Categoria</label>
+                    <select class="form-control" id="tipodespesa" name="tipodespesa">
+                        <option value="-1">Selecione ...</option>
+                        @foreach (var item in ViewBag.tipodespesa)
+                        {
+                            <option value="@item.Id">@item.Descricao</option>
+                        }
+
+                        @*<option value="1">Alimentação</option>
+                            <option value="2">Saúde</option>
+                            <option value="3">Transporte</option>
+                            <option value="4">Gasolina</option>
+                            <option value="5">Impostos</option>
+                            <option value="6">Utensilios Móveis Apartamento</option>*@
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="col-form-label" for="data">Data</label>
+                    <input type="date" class="form-control" id="data" name="data" required />
+                </div>
+
+                @*<div class="form-group col-md-4">
+                        <label class="col-form-label">Tipo Documento</label>
+                        <select class="form-control" id="tipo" name="tipo">
+                            <option value="-1">Selecione ...</option>
+                            <option value="1">Manual</option>
+                            <option value="2">Regras</option>
+                            <option value="3">Cursos</option>
+                            <option value="4">Outros</option>
+                        </select>
+                    </div>*@
+
+            </div>
+
+            <div class="container row">
+
+                <div class="form-group col-md-4">
+                    <label class="col-form-label" for="conta">Conta</label>
+                    <select class="form-control" id="conta" name="conta">
+                        <option value="-1">Selecione....</option>
+                        @foreach (var item in ViewBag.contas)
+                        {
+                            <option value="@item.Id">@item.Descricao</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label class="col-form-label" for="pagamento">Forma Pagamento</label>
+                    <select class="form-control" id="pagamento" name="pagamento">
+                        <option value="-1">Selecione ...</option>
+                        @foreach (var item in ViewBag.formapagamento)
+                        {
+                            <option value="@item.Id">@item.Descricao</option>
+                        }
+                        @*<option value="1">Cartão de Crédito</option>
+                            <option value="2">Cartão de Débito</option>
+                            <option value="3">Dinheiro</option>
+                            <option value="4">Cheques</option>
+                            <option value="5">Conta Corrente</option>
+                            <option value="6">Outros</option>*@
+                    </select>
+                </div>
+
+
+
+                <div class="form-group col-md-4">
+                    <label class="col-form-label">Anexo</label>
+                    <input type="file" title="Selecione um arquivo" class="form-control" id="file" name="file" />
+                </div>
+                @*<div class="form-group col-md-1">
+                        <label class="col-form-label" for="parcelado">Parcelado?</label>
+                        <input type="checkbox" class="form-control" id="parcelado"  name="parcelado" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label class="col-form-label" for="qtdeParcela">Qtde Parcela</label>
+                        <input type="text" class="form-control" id="qtdeParcela" name="qtdeParcela" />
+                    </div>*@
+
+            </div>
+
+            <div class="container row">
+                <div class="form-group col-md-4">
+                    <input type="submit" value="Salvar Despesa" formmethod="post" class="btn btn-lg btn-success" />
+                </div>
+            </div>
+
+        }
+    </div>
+
+    @Html.Partial("_MensagemErroPartial")
+    @Html.Partial("_MensagemSucessoPartial")
+</div>
+
+    
+
+    @*<div class="jumbotron">
+
+            @using (Html.BeginForm("Registrar", "Despesa", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <hr />
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Data, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Data, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Valor, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Valor, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Arquivo, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Arquivo, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Parcelado, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Parcelado, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.QtdeParcela, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.QtdeParcela, new { @class = "form-control" })
+                    </div>
+                </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Pagamentos, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    <select class="form-control">
+                        <option>Selecione....</option>
+                        <option>Cartão de Crédito</option>
+                        <option>Dinheiro</option>
+                        <option>Cheque</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-success" value="Registrar" />
+                </div>
+            </div>
+            }
+
+        </div>*@
+

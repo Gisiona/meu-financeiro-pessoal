@@ -1,0 +1,59 @@
+﻿
+<div class="modal fade" id="criarNovoUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Criar um novo usuário</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                @using (Html.BeginForm("novousuario", "account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <form method="post">
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <label for="nome">Nome</label>
+                                    <input class="form-control" id="nome" name="nome" type="text" aria-describedby="nameHelp" placeholder="Nome" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="telefone">Telefone</label>
+                                    <input class="form-control" id="telefone" name="telefone" type="tel" aria-describedby="nameHelp" placeholder="Telefone" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="telefone">Cpf</label>
+                                    <input class="form-control" id="cpf" name="cpf" type="tel" aria-describedby="nameHelp" placeholder="Cpf" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input class="form-control" id="email" name="email" type="email" aria-describedby="emailHelp" placeholder="E-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label for="exampleInputPassword1">Senha</label>
+                                    <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Senha" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="exampleConfirmPassword">Confirme a senha</label>
+                                    <input class="form-control" id="exampleConfirmPassword" type="password" placeholder="Confirme a senha" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-success" type="submit" data-dismiss="modal">Criar Usuário</button>
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>

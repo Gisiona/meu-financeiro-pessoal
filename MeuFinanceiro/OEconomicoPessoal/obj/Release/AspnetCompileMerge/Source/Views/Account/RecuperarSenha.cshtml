@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutExternalSemLoginPartial.cshtml";
+}
+
+@Html.Partial("_RecuperarSenhaPartialView")
+
+
+@*<body class="bg-dark">
+     @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header">Esqueceu sua senha?</div>
+
+            <div class="card-body">
+                <form method="post">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-8">
+                                <p>Digite seu e-mail para recuperar a senha.</p>
+                                <div class="form-group">
+                                    <input type="email" placeholder="exemplo@exemplo.com.br" class="form-control col-md-12" id="email" name="email" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block">Salvar Usuário</button>
+
+                </form>
+                <div class="text-right">
+                    <a class="d-block small mt-3" href="/account/login">Voltar para tela de login</a>
+                </div>
+            </div>
+
+            @Html.Partial("_MensagemErroPartial")
+            @Html.Partial("_MensagemSucessoPartial")
+
+        </div>
+    </div>
+</body>*@
+
+
+@*Logout Modal Logof
+    <div id="recuperarSenha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Esqueceu sua senha? </h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <form method="post">
+                    <div class="modal-body">
+
+                        <div>
+                            <p>Digite seu e-mail para recuperar a senha.</p>
+                            <div class="form-group">
+                                <input type="email" placeholder="exemplo@exemplo.com.br" class="form-control col-md-12" id="email" name="email" required />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" type="submit" data-dismiss="modal">Recuperar Senha</button>
+                        <a href="/account/login" class="btn btn-primary"> Voltar para tela de login</a>
+                    </div>
+
+                    <div class="panel-info">
+                        @Html.Partial("_MensagemErroPartial")
+                        @Html.Partial("_MensagemSucessoPartial")
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>*@

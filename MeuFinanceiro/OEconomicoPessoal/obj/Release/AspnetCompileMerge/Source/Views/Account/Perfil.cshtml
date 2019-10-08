@@ -1,0 +1,154 @@
+﻿@model OEconomicoPessoal.Models.ViewModel.AccountViewModel
+
+<div class="panel panel-danger">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/account/perfil">Perfil</a>
+        </li>
+        <li class="breadcrumb-item active">Meu Perfil</li>
+    </ol>
+</div>
+<div class="card mx-auto mt-auto">
+    <div class="card-header">Atualizar meu cadastro </div>
+    <div class="panel-info">
+        @Html.Partial("_MensagemErroPartial")
+        @Html.Partial("_MensagemSucessoPartial")
+    </div>
+
+    @using (Html.BeginForm("perfil", "account", FormMethod.Post, new { enctype = "multipart/form-data", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <form method="post">
+            <div class="container row">
+                <div class="form-group col-md-8">
+                    <label class="col-form-label" for="nome">Nome</label>
+                    <input class="form-control" id="nome" name="nome" type="text" aria-describedby="nameHelp" placeholder="Nome" value="@Model.GetAccountPerfil.Nome" readonly>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="col-form-label" for="datanascimento">Data Nascimento</label>
+                   @* <input type="date" class="form-control" id="datanascimento" name="datanascimento" required value="@Model.GetAccountPerfil.DataNascimento"/>*@
+                    <input type="text" class="form-control" id="datanascimento" name="datanascimento" required value="@Model.GetAccountPerfil.DataNascimento"  readonly/>
+                </div>
+            </div>
+
+            <div class="container row">
+                <div class="form-group col-md-6">
+                    <label class="col-form-label" for="email">E-mail</label>
+                    <input class="form-control" id="email" name="email" type="email" aria-describedby="emailHelp" placeholder="E-mail" value="@Model.GetAccountPerfil.Email" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="col-form-label" for="telefone">Tel. Celular</label>
+                    <input class="form-control" id="telefone" name="telefone" type="tel" aria-describedby="nameHelp" placeholder="Telefone celular" value="@Model.GetAccountPerfil.Telefone" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="col-form-label" for="cpf">CPF/CNPJ</label>
+                    <input maxlength="18" onkeypress='mascaraMutuario(this,cpfCnpj)' onblur='clearTimeout()' required data-error=" Digite seu CPF"
+                           class="form-control" id="cpf" name="cpf" type="text" aria-describedby="nameHelp" placeholder="CPF ou CNPJ" value="@Model.GetAccountPerfil.Cpf" readonly>
+                </div>
+            </div>
+
+            <div class="container row">
+                <div class="form-group col-md-3">
+                    <label class="col-form-label" for="senha">Senha</label>
+                    <input class="form-control" id="senha" name="senha" type="password" placeholder="Senha" required maxlength="20" value="@Model.GetAccountPerfil.Senha" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="col-form-label" for="confirmarsenha">Confirme a senha</label>
+                    <input class="form-control" id="confirmarsenha" name="confirmarsenha" type="password" placeholder="Confirme a senha" required maxlength="20" value="@Model.GetAccountPerfil.ConfirmarSenha" readonly>
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="col-form-label" for="datacadastro">Data Cadastro</label>
+                    @*<input type="date" class="form-control" id="datacadastro" name="datacadastro" required value="@Model.GetAccountPerfil.DataCadastro"  readonly/>*@
+                    <input type="text" class="form-control" id="datacadastro" name="datacadastro" required value="@Model.GetAccountPerfil.DataCadastro" readonly />
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="col-form-label" for="status">Ativo</label>
+                    <input class="form-control" id="status" name="status" type="checkbox" placeholder="Ativo ou desativo" required maxlength="20" value="@Model.GetAccountPerfil.IsAtivo" readonly>
+                </div>
+            </div>
+
+            <div class="container row">
+                <div class="form-group col-md-12">
+                    <input type="submit" value="Atualizar perfil" formmethod="post" class="btn btn-lg btn-block btn-success" hidden readonly />
+                </div>
+            </div>
+        </form>
+    }
+</div>
+
+
+<br />
+
+<script>
+    function mascaraMutuario(o, f) {
+        v_obj = o
+        v_fun = f
+        setTimeout('execmascara()', 1)
+    }
+
+    function execmascara() {
+        v_obj.value = v_fun(v_obj.value)
+    }
+
+    function cpfCnpj(v) {
+
+        //Remove tudo o que não é dígito
+        v = v.replace(/\D/g, "")
+
+        if (v.length <= 14) { //CPF
+
+            //Coloca um ponto entre o terceiro e o quarto dígitos
+            v = v.replace(/(\d{3})(\d)/, "$1.$2")
+
+            //Coloca um ponto entre o terceiro e o quarto dígitos
+            //de novo (para o segundo bloco de números)
+            v = v.replace(/(\d{3})(\d)/, "$1.$2")
+
+            //Coloca um hífen entre o terceiro e o quarto dígitos
+            v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+
+        } else { //CNPJ
+
+            //Coloca ponto entre o segundo e o terceiro dígitos
+            v = v.replace(/^(\d{2})(\d)/, "$1.$2")
+
+            //Coloca ponto entre o quinto e o sexto dígitos
+            v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3")
+
+            //Coloca uma barra entre o oitavo e o nono dígitos
+            v = v.replace(/\.(\d{3})(\d)/, ".$1/$2")
+
+            //Coloca um hífen depois do bloco de quatro dígitos
+            v = v.replace(/(\d{4})(\d)/, "$1-$2")
+
+        }
+
+        return v
+    }
+
+
+    /* Máscaras ER */
+    function mascara(o, f) {
+        v_obj = o
+        v_fun = f
+        setTimeout("execmascara()", 1)
+    }
+    function execmascara() {
+        v_obj.value = v_fun(v_obj.value)
+    }
+    function mtel(v) {
+        v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
+        v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
+        v = v.replace(/(\d)(\d{4})$/, "$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+        return v;
+    }
+    function id(el) {
+        return document.getElementById(el);
+    }
+    window.onload = function () {
+        id('telefone').onkeyup = function () {
+            mascara(this, mtel);
+        }
+    }
+
+</script>

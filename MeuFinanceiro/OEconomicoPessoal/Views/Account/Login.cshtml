@@ -1,0 +1,79 @@
+﻿@model OEconomicoPessoal.Entidades.Account
+
+@{
+    Layout = "~/Views/Shared/_LayoutExternalSemLoginPartial.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Login | Meu Financeiro</title>
+    <!-- Bootstrap core CSS-->
+    <link href="~/Content/oeconomico/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="~/Content/oeconomico/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link href="~/Content/oeconomico/css/sb-admin.min.css" rel="stylesheet" />
+</head>
+<body class="bg-dark">
+
+    @using (Html.BeginForm("login", "account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="container">
+
+
+            <div class="card card-login mx-auto mt-5">
+                <div class="card-header">Accesso Restrito</div>
+
+                <div class="card-body">
+
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input class="form-control" id="email" name="email" type="email" aria-describedby="emailHelp" placeholder="Digite seu e-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input class="form-control" id="senha" name="senha" type="password" placeholder="Digite sua senha" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" id="rememberme" name="rememberme" type="checkbox"> Lembrar a senha
+                                </label>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-success btn-block" value="Entrar" />
+                    </form>
+                    <div class="text-right">
+                        <a class="d-block small mt-3" data-target="#criarNovoUsuario" href="/account/novousuario">Criar uma conta</a>
+
+                        <a href="/account/recuperarsenha" class="d-block small">Esqueceu sua senha?</a>
+                    </div>
+
+                    @Html.Partial("_MensagemErroPartial")
+                    @Html.Partial("_MensagemSucessoPartial")
+                </div>
+
+            </div>
+        </div>
+    }
+
+    @*@Html.Partial("_CriarNovoUsuarioPartialView")*@
+    @*@Html.Partial("_RecuperarSenhaPartialView")*@
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Content/oeconomico/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/oeconomico/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/Content/oeconomico/vendor/jquery-easing/jquery.easing.min.js"></script>
+</body>
+</html>
